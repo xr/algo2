@@ -1,23 +1,22 @@
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
+import edu.princeton.cs.algs4.Digraph;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import edu.princeton.cs.algs4.StdIn;
+
 import java.util.HashMap;
-import java.util.List;
 
 public class SAP {
 
     private final Digraph digraph;
-    private final HashMap<Integer, BreadthFirstDirectedPaths> bfsMap;
     private final HashMap<String, Integer> lengthCache;
     private final HashMap<String, Integer> ancestorCache;
 
     // constructor takes a digraph (not necessarily a DAG)
     public SAP(Digraph G) {
         if (G == null) throw new IllegalArgumentException("argument is null");
-        assertDAG(G);
         digraph = new Digraph(G);
-        bfsMap = new HashMap<>();
         lengthCache = new HashMap<>();
         ancestorCache = new HashMap<>();
     }
@@ -27,29 +26,20 @@ public class SAP {
         In in = new In(args[0]);
         Digraph G = new Digraph(in);
         SAP sap = new SAP(G);
-        Iterable<Integer> it1 = Arrays.asList(13, 23, 24);
-        Iterable<Integer> it2 = Arrays.asList(6, 16, 17);
 
-        int length = sap.length(it1, it2);
-        int ancestor = sap.ancestor(it1, it2);
-        StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
-//        while (!StdIn.isEmpty()) {
-//            int v = StdIn.readInt();
-//            int w = StdIn.readInt();
-//            int length = sap.length(v, w);
-//            int ancestor = sap.ancestor(v, w);
-//            StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
-//        }
+        while (!StdIn.isEmpty()) {
+            int v = StdIn.readInt();
+            int w = StdIn.readInt();
+            int length = sap.length(v, w);
+            int ancestor = sap.ancestor(v, w);
+            StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
+        }
     }
 
-    private void assertNotNull(Object o) {
-        if (o == null) throw new IllegalArgumentException("argument is null");
+    private void assertNotNull(Object obj) {
+        if (obj == null) throw new IllegalArgumentException("argument is null");
     }
 
-    private void assertDAG(Digraph G) {
-        Topological top = new Topological(G);
-        if (!top.hasOrder()) throw new IllegalArgumentException("the digraph is not a DAG, can not continue");
-    }
 
     private void assertVertexInRange(int v) {
         if (v < 0 || v >= digraph.V()) {
@@ -57,44 +47,6 @@ public class SAP {
         }
     }
 
-    private void bfs(Digraph g, int s) {
-        bfsMap.computeIfAbsent(s, k -> new BreadthFirstDirectedPaths(g, s));
-    }
-
-    private int sizeOfIterable(Iterable<Integer> it) {
-        int count = 0;
-        for (int i : it) count++;
-        return count;
-    }
-
-    private int recur(Iterable<Integer> it, int w, int nearestLengthSoFar) {
-        if (sizeOfIterable(it) == 0) {
-            return -1;
-        }
-
-        List<Integer> parentVertices = new ArrayList<Integer>();
-
-        int ancestor = -1;
-        int nearestLength = nearestLengthSoFar;
-        for (int vertex : it) {
-            for (int adj : digraph.adj(vertex)) {
-
-                if (bfsMap.get(w).hasPathTo(adj)) {
-                    int newNearestLength = Integer.min(bfsMap.get(w).distTo(adj), nearestLength);
-                    if (newNearestLength < nearestLength) {
-                        nearestLength = newNearestLength;
-                        ancestor = adj;
-                    }
-                } else {
-                    parentVertices.add(adj);
-                }
-
-            }
-        }
-
-
-        return ancestor != -1 ? ancestor : recur(parentVertices, w, nearestLength);
-    }
 
     // length of shortest ancestral path between v and w; -1 if no such path
     public int length(int v, int w) {
@@ -104,18 +56,13 @@ public class SAP {
         if (lengthCache.containsKey(key)) {
             return lengthCache.get(key);
         }
-        bfs(digraph, v);
-        bfs(digraph, w);
-        int ancestor = ancestor(v, w);
-        if (ancestor == -1) {
-            return -1;
-        }
-        int len = bfsMap.get(w).distTo(ancestor) + bfsMap.get(v).distTo(ancestor);
+        int[] results = helper(new BreadthFirstDirectedPaths(digraph, v), new BreadthFirstDirectedPaths(digraph, w));
+        int result = modify(results)[0];
         String key1 = "" + v + "-" + w;
         String key2 = "" + w + "-" + v;
-        lengthCache.put(key1, len);
-        lengthCache.put(key2, len);
-        return len;
+        lengthCache.put(key1, result);
+        lengthCache.put(key2, result);
+        return result;
     }
 
     // a common ancestor of v and w that participates in a shortest ancestral path; -1 if no such path
@@ -126,19 +73,36 @@ public class SAP {
         if (ancestorCache.containsKey(key)) {
             return ancestorCache.get(key);
         }
-        bfs(digraph, w);
-        int ancestor = -1;
-        if (bfsMap.get(w).hasPathTo(v)) {
-            ancestor = v;
-        } else {
-            ancestor = recur(Arrays.asList(v), w, Integer.MAX_VALUE);
-        }
 
+        int[] results = helper(new BreadthFirstDirectedPaths(digraph, v), new BreadthFirstDirectedPaths(digraph, w));
+        int result = modify(results)[1];
         String key1 = "" + v + "-" + w;
         String key2 = "" + w + "-" + v;
-        ancestorCache.put(key1, ancestor);
-        ancestorCache.put(key2, ancestor);
-        return ancestor;
+        ancestorCache.put(key1, result);
+        ancestorCache.put(key2, result);
+        return result;
+    }
+
+    private int[] helper(BreadthFirstDirectedPaths bfs1, BreadthFirstDirectedPaths bfs2) {
+        int length = Integer.MAX_VALUE, ancestor = 0;
+        for (int i = 0, temp = 0; i < digraph.V(); i++) {
+            if (bfs1.hasPathTo(i) && bfs2.hasPathTo(i)) {
+                temp = bfs1.distTo(i) + bfs2.distTo(i);
+                if (temp < length) {
+                    length = temp;
+                    ancestor = i;
+                }
+            }
+        }
+        return new int[]{length, ancestor};
+    }
+
+    private int[] modify(int[] a) {
+        if (a[0] == Integer.MAX_VALUE) {
+            a[0] = -1;
+            a[1] = -1;
+        }
+        return a;
     }
 
     // length of shortest ancestral path between any vertex in v and any vertex in w; -1 if no such path

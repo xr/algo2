@@ -1,26 +1,15 @@
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.MaxPQ;
 import edu.princeton.cs.algs4.StdOut;
 
-import java.util.Comparator;
-import java.util.HashMap;
-
+// Return the word that is furthest from all the other synset
 public class Outcast {
-    private final WordNet wordnet;
-    private final HashMap<String, Integer> distanceCache;
-    private final MaxPQ<outcastNode> outcastSum;
 
-    // constructor takes a WordNet object
+    final private WordNet wordnet;
+
     public Outcast(WordNet wordnet) {
-        if (wordnet == null) {
-            throw new IllegalArgumentException();
-        }
         this.wordnet = wordnet;
-        distanceCache = new HashMap<>();
-        outcastSum = new MaxPQ<>(Comparator.comparingInt((outcastNode n) -> n.sum));
-    }
+    }        // constructor takes a WordNet object
 
-    // see test client below
     public static void main(String[] args) {
         WordNet wordnet = new WordNet(args[0], args[1]);
         Outcast outcast = new Outcast(wordnet);
@@ -31,43 +20,20 @@ public class Outcast {
         }
     }
 
-    private int getDistance(String noun1, String noun2) {
-        String key = noun1 + "-" + noun2;
-        if (distanceCache.containsKey(key)) {
-            return distanceCache.get(key);
-        } else {
-            int distance = wordnet.distance(noun1, noun2);
-            distanceCache.put(key, distance);
-            return distance;
-        }
-    }
-
-    // given an array of WordNet nouns, return an outcast
     public String outcast(String[] nouns) {
-        if (nouns == null) {
-            throw new IllegalArgumentException();
-        }
-
-        for (String noun : nouns) {
-            int sum = 0;
-            for (String noun2 : nouns) {
-                if (noun != noun2) {
-                    sum += getDistance(noun, noun2);
-                }
+        if (nouns.length == 0) throw new IllegalArgumentException("Noun list should not be empty");
+        int maxDist = 0;
+        String maxNoun = nouns[0];
+        for (String cand : nouns) {
+            int dist = 0;
+            for (String noun : nouns) {
+                dist += wordnet.distance(cand, noun);
             }
-            outcastSum.insert(new outcastNode(noun, sum));
+            if (dist > maxDist) {
+                maxDist = dist;
+                maxNoun = cand;
+            }
         }
-
-        return outcastSum.max().noun;
-    }
-
-    private class outcastNode {
-        private final String noun;
-        private final int sum;
-
-        public outcastNode(String noun, int sum) {
-            this.noun = noun;
-            this.sum = sum;
-        }
-    }
+        return maxNoun;
+    }  // given an array of WordNet nouns, return an outcast
 }

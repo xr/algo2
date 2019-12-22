@@ -1,8 +1,15 @@
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Topological;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.ArrayList;
+
 
 public class WordNet {
 
@@ -20,6 +27,7 @@ public class WordNet {
         verticesAmount = parseSynsets(synsets);
         digraph = new Digraph(verticesAmount);
         parseHypernyms(hypernyms);
+        assertDAG(digraph);
         sapInstance = new SAP(digraph);
     }
 
@@ -30,11 +38,16 @@ public class WordNet {
         StdOut.printf(wordnet.sap("worm", "bird"));
     }
 
+    private void assertDAG(Digraph G) {
+        Topological top = new Topological(G);
+        if (!top.hasOrder()) throw new IllegalArgumentException("the digraph is not a DAG, can not continue");
+    }
+
     private int parseSynsets(String synsets) {
         In synsetsIn = new In(synsets);
         while (!synsetsIn.isEmpty()) {
             String line = synsetsIn.readLine();
-            String fields[] = line.split(",");
+            String[] fields = line.split(",");
             String[] wordsList = fields[1].split(" ");
             int synsetId = Integer.parseInt(fields[0]);
 
@@ -64,7 +77,7 @@ public class WordNet {
         In hypernymsIn = new In(hypernyms);
         while (!hypernymsIn.isEmpty()) {
             String line = hypernymsIn.readLine();
-            String fields[] = line.split(",");
+            String[] fields = line.split(",");
             int n = Integer.parseInt(fields[0]);
             for (int i = 1; i < fields.length; i++) {
                 int v = Integer.parseInt(fields[i]);
@@ -75,7 +88,7 @@ public class WordNet {
 
     // returns all WordNet nouns
     public Iterable<String> nouns() {
-        List<String> keys = new ArrayList(wordNetMap.keySet());
+        List<String> keys = new ArrayList<String>(wordNetMap.keySet());
         return keys;
     }
 
@@ -103,11 +116,12 @@ public class WordNet {
 
         int ancestor = sapInstance.ancestor(it1, it2);
 
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (String word : wordSynsets.get(ancestor)) {
-            result += " " + word;
+            result.append(" ");
+            result.append(word);
         }
 
-        return result;
+        return result.toString();
     }
 }
