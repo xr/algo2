@@ -12,6 +12,9 @@ public class Outcast {
 
     // constructor takes a WordNet object
     public Outcast(WordNet wordnet) {
+        if (wordnet == null) {
+            throw new IllegalArgumentException();
+        }
         this.wordnet = wordnet;
         distanceCache = new HashMap<>();
         outcastSum = new MaxPQ<>(Comparator.comparingInt((outcastNode n) -> n.sum));
@@ -41,6 +44,9 @@ public class Outcast {
 
     // given an array of WordNet nouns, return an outcast
     public String outcast(String[] nouns) {
+        if (nouns == null) {
+            throw new IllegalArgumentException();
+        }
 
         for (String noun : nouns) {
             int sum = 0;
