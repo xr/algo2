@@ -14,12 +14,12 @@ public class SAP {
 
     // constructor takes a digraph (not necessarily a DAG)
     public SAP(Digraph G) {
+        if (G == null) throw new IllegalArgumentException("argument is null");
         assertDAG(G);
-        StdOut.printf("DAG checking passed");
-        this.digraph = new Digraph(G);
-        this.bfsMap = new HashMap<>();
-        this.lengthCache = new HashMap<>();
-        this.ancestorCache = new HashMap<>();
+        digraph = new Digraph(G);
+        bfsMap = new HashMap<>();
+        lengthCache = new HashMap<>();
+        ancestorCache = new HashMap<>();
     }
 
     // do unit testing of this class
@@ -42,29 +42,33 @@ public class SAP {
 //        }
     }
 
+    private void assertNotNull(Object o) {
+        if (o == null) throw new IllegalArgumentException("argument is null");
+    }
+
     private void assertDAG(Digraph G) {
         Topological top = new Topological(G);
         if (!top.hasOrder()) throw new IllegalArgumentException("the digraph is not a DAG, can not continue");
     }
 
     private void assertVertexInRange(int v) {
-        if (v < 0 || v >= this.digraph.V()) {
+        if (v < 0 || v >= digraph.V()) {
             throw new IllegalArgumentException("vertex is not in range");
         }
     }
 
     private void bfs(Digraph g, int s) {
-        this.bfsMap.computeIfAbsent(s, k -> new BreadthFirstDirectedPaths(g, s));
+        bfsMap.computeIfAbsent(s, k -> new BreadthFirstDirectedPaths(g, s));
     }
 
-    public int sizeOfIterable(Iterable<Integer> it) {
+    private int sizeOfIterable(Iterable<Integer> it) {
         int count = 0;
         for (int i : it) count++;
         return count;
     }
 
     private int recur(Iterable<Integer> it, int w, int nearestLengthSoFar) {
-        if (this.sizeOfIterable(it) == 0) {
+        if (sizeOfIterable(it) == 0) {
             return -1;
         }
 
@@ -73,10 +77,10 @@ public class SAP {
         int ancestor = -1;
         int nearestLength = nearestLengthSoFar;
         for (int vertex : it) {
-            for (int adj : this.digraph.adj(vertex)) {
+            for (int adj : digraph.adj(vertex)) {
 
-                if (this.bfsMap.get(w).hasPathTo(adj)) {
-                    int newNearestLength = Integer.min(this.bfsMap.get(w).distTo(adj), nearestLength);
+                if (bfsMap.get(w).hasPathTo(adj)) {
+                    int newNearestLength = Integer.min(bfsMap.get(w).distTo(adj), nearestLength);
                     if (newNearestLength < nearestLength) {
                         nearestLength = newNearestLength;
                         ancestor = adj;
@@ -97,20 +101,20 @@ public class SAP {
         assertVertexInRange(v);
         assertVertexInRange(w);
         String key = "" + v + "-" + w;
-        if (this.lengthCache.containsKey(key)) {
-            return this.lengthCache.get(key);
+        if (lengthCache.containsKey(key)) {
+            return lengthCache.get(key);
         }
-        this.bfs(this.digraph, v);
-        this.bfs(this.digraph, w);
-        int ancestor = this.ancestor(v, w);
+        bfs(digraph, v);
+        bfs(digraph, w);
+        int ancestor = ancestor(v, w);
         if (ancestor == -1) {
             return -1;
         }
-        int len = this.bfsMap.get(w).distTo(ancestor) + this.bfsMap.get(v).distTo(ancestor);
+        int len = bfsMap.get(w).distTo(ancestor) + bfsMap.get(v).distTo(ancestor);
         String key1 = "" + v + "-" + w;
         String key2 = "" + w + "-" + v;
-        this.lengthCache.put(key1, len);
-        this.lengthCache.put(key2, len);
+        lengthCache.put(key1, len);
+        lengthCache.put(key2, len);
         return len;
     }
 
@@ -119,30 +123,32 @@ public class SAP {
         assertVertexInRange(v);
         assertVertexInRange(w);
         String key = "" + v + "-" + w;
-        if (this.ancestorCache.containsKey(key)) {
-            return this.ancestorCache.get(key);
+        if (ancestorCache.containsKey(key)) {
+            return ancestorCache.get(key);
         }
-        this.bfs(this.digraph, w);
+        bfs(digraph, w);
         int ancestor = -1;
-        if (this.bfsMap.get(w).hasPathTo(v)) {
+        if (bfsMap.get(w).hasPathTo(v)) {
             ancestor = v;
         } else {
-            ancestor = this.recur(Arrays.asList(v), w, Integer.MAX_VALUE);
+            ancestor = recur(Arrays.asList(v), w, Integer.MAX_VALUE);
         }
 
         String key1 = "" + v + "-" + w;
         String key2 = "" + w + "-" + v;
-        this.ancestorCache.put(key1, ancestor);
-        this.ancestorCache.put(key2, ancestor);
+        ancestorCache.put(key1, ancestor);
+        ancestorCache.put(key2, ancestor);
         return ancestor;
     }
 
     // length of shortest ancestral path between any vertex in v and any vertex in w; -1 if no such path
     public int length(Iterable<Integer> v, Iterable<Integer> w) {
+        assertNotNull(v);
+        assertNotNull(w);
         int shortestLength = Integer.MAX_VALUE;
         for (int first : v) {
             for (int second : w) {
-                int len = this.length(first, second);
+                int len = length(first, second);
                 if (len != -1) {
                     shortestLength = Integer.min(len, shortestLength);
                 }
@@ -153,14 +159,16 @@ public class SAP {
 
     // a common ancestor that participates in shortest ancestral path; -1 if no such path
     public int ancestor(Iterable<Integer> v, Iterable<Integer> w) {
+        assertNotNull(v);
+        assertNotNull(w);
         int shortestLength = Integer.MAX_VALUE;
         int ancestor = -1;
         for (int first : v) {
             for (int second : w) {
-                int newShortestLength = this.length(first, second);
+                int newShortestLength = length(first, second);
                 if (newShortestLength != -1 && newShortestLength < shortestLength) {
                     shortestLength = newShortestLength;
-                    ancestor = this.ancestor(first, second);
+                    ancestor = ancestor(first, second);
                 }
             }
         }

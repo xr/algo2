@@ -7,6 +7,9 @@
         <option value="organizeImports" />
         <option value="reformat" />
         <option value="rearrange" />
+        <option value="unnecessaryThis" />
+        <option value="suppressAnnotation" />
+        <option value="unnecessarySemicolon" />
       </set>
     </option>
     <option name="configurationPath" value="" />
