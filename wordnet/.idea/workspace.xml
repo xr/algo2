@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7ca927b9-ab60-45e5-a72e-47a60a78db70" name="Default Changelist" comment="" />
+    <list default="true" id="7ca927b9-ab60-45e5-a72e-47a60a78db70" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../seamCarving/src/SP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../seamCarving/src/SeamCarver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../seamCarving/src/tinyEWD.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +21,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1VJ8ta8hqSchZXlrOJyX5gpgw4P" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,18 +33,19 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/data" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="settings.saveactions" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Outcast">
+  <component name="RunManager" selected="Application.SP">
     <configuration name="Outcast" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Outcast" />
       <module name="wordnet" />
@@ -50,6 +62,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SP" />
+      <module name="seamCarving" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SeamCarver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SeamCarver" />
+      <module name="seamCarving" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WordNet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="WordNet" />
       <module name="wordnet" />
@@ -59,12 +85,16 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.SAP" />
-      <item itemvalue="Application.WordNet" />
       <item itemvalue="Application.Outcast" />
+      <item itemvalue="Application.SAP" />
+      <item itemvalue="Application.SeamCarver" />
+      <item itemvalue="Application.WordNet" />
+      <item itemvalue="Application.SP" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SP" />
+        <item itemvalue="Application.SeamCarver" />
         <item itemvalue="Application.Outcast" />
         <item itemvalue="Application.WordNet" />
         <item itemvalue="Application.SAP" />
@@ -97,96 +127,50 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="516" y="202" key="#Outcast" timestamp="1577028296113">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="516" y="202" key="#Outcast/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577028296113" />
-    <state x="580" y="222" width="811" height="669" key="#Project_Structure" timestamp="1576960092945">
+    <state x="434" y="202" key="#Project_Structure" timestamp="1601882065313">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="580" y="222" width="811" height="669" key="#Project_Structure/0.23.1680.1027@0.23.1680.1027" timestamp="1576960092945" />
-    <state x="516" y="202" key="#SAP" timestamp="1577037010980">
+    <state x="434" y="202" key="#Project_Structure/0.23.1680.1027/1680.23.2560.1417@0.23.1680.1027" timestamp="1601882065313" />
+    <state x="563" y="232" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1601882455540">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="563" y="232" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.23.1680.1027/1680.23.2560.1417@0.23.1680.1027" timestamp="1601882455540" />
+    <state width="1638" height="294" key="GridCell.Tab.0.bottom" timestamp="1602145890525">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="516" y="202" key="#SAP/0.0.1680.1050@0.0.1680.1050" timestamp="1576964000802" />
-    <state x="516" y="202" key="#SAP/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577037010980" />
-    <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577038739675">
+    <state width="1638" height="294" key="GridCell.Tab.0.bottom/0.0.1680.1050/1680.0.2560.1440@0.0.1680.1050" timestamp="1602145890525" />
+    <state width="1638" height="280" key="GridCell.Tab.0.bottom/0.23.1680.1027/1680.23.2560.1417@0.23.1680.1027" timestamp="1601883057054" />
+    <state width="1638" height="280" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1601911241604" />
+    <state width="1638" height="294" key="GridCell.Tab.0.center" timestamp="1602145890523">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1577026086898" />
-    <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577038739675" />
-    <state x="572" y="335" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577027688181">
+    <state width="1638" height="294" key="GridCell.Tab.0.center/0.0.1680.1050/1680.0.2560.1440@0.0.1680.1050" timestamp="1602145890523" />
+    <state width="1638" height="280" key="GridCell.Tab.0.center/0.23.1680.1027/1680.23.2560.1417@0.23.1680.1027" timestamp="1601883057053" />
+    <state width="1638" height="280" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1601911241603" />
+    <state width="1638" height="294" key="GridCell.Tab.0.left" timestamp="1602145890523">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="572" y="335" key="#com.intellij.fileTypes.FileTypeChooser/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577027688181" />
-    <state x="628" y="237" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1577018101116">
+    <state width="1638" height="294" key="GridCell.Tab.0.left/0.0.1680.1050/1680.0.2560.1440@0.0.1680.1050" timestamp="1602145890523" />
+    <state width="1638" height="280" key="GridCell.Tab.0.left/0.23.1680.1027/1680.23.2560.1417@0.23.1680.1027" timestamp="1601883057052" />
+    <state width="1638" height="280" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1601911241603" />
+    <state width="1638" height="294" key="GridCell.Tab.0.right" timestamp="1602145890524">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="628" y="237" key="#com.intellij.ide.macro.MacrosDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1576964336707" />
-    <state x="628" y="237" key="#com.intellij.ide.macro.MacrosDialog/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577018101116" />
-    <state x="445" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1577025250781">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state width="1638" height="294" key="GridCell.Tab.0.right/0.0.1680.1050/1680.0.2560.1440@0.0.1680.1050" timestamp="1602145890524" />
+    <state width="1638" height="280" key="GridCell.Tab.0.right/0.23.1680.1027/1680.23.2560.1417@0.23.1680.1027" timestamp="1601883057054" />
+    <state width="1638" height="280" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1601911241604" />
+    <state x="341" y="175" key="SettingsEditor" timestamp="1601034950874">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="445" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1577025250781" />
-    <state width="1638" height="295" key="GridCell.Tab.0.bottom" timestamp="1577039102286">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state x="341" y="175" key="SettingsEditor/0.23.1680.1027/1680.23.2560.1417@0.23.1680.1027" timestamp="1601034950874" />
+    <state x="517" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1602063050617">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1638" height="295" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1577027514889" />
-    <state width="1638" height="295" key="GridCell.Tab.0.bottom/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577039102286" />
-    <state width="1638" height="295" key="GridCell.Tab.0.center" timestamp="1577039102285">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state x="517" y="369" key="com.intellij.ide.util.TipDialog/0.23.1680.1027/1680.23.2560.1417@0.23.1680.1027" timestamp="1602063050617" />
+    <state x="217" y="234" key="new project wizard" timestamp="1601882052231">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1638" height="295" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1577027514888" />
-    <state width="1638" height="295" key="GridCell.Tab.0.center/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577039102285" />
-    <state width="1638" height="295" key="GridCell.Tab.0.left" timestamp="1577039102284">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1638" height="295" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1577027514888" />
-    <state width="1638" height="295" key="GridCell.Tab.0.left/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577039102284" />
-    <state width="1638" height="295" key="GridCell.Tab.0.right" timestamp="1577039102285">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1638" height="295" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1577027514889" />
-    <state width="1638" height="295" key="GridCell.Tab.0.right/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577039102285" />
-    <state width="1638" height="363" key="GridCell.Tab.1.bottom" timestamp="1577038902128">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1638" height="363" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1577025844806" />
-    <state width="1638" height="363" key="GridCell.Tab.1.bottom/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577038902128" />
-    <state width="1638" height="363" key="GridCell.Tab.1.center" timestamp="1577038902126">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1638" height="363" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1577025844805" />
-    <state width="1638" height="363" key="GridCell.Tab.1.center/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577038902126" />
-    <state width="1638" height="363" key="GridCell.Tab.1.left" timestamp="1577038902125">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1638" height="363" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1577025844804" />
-    <state width="1638" height="363" key="GridCell.Tab.1.left/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577038902125" />
-    <state width="1638" height="363" key="GridCell.Tab.1.right" timestamp="1577038902127">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1638" height="363" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1577025844805" />
-    <state width="1638" height="363" key="GridCell.Tab.1.right/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577038902127" />
-    <state x="468" y="118" key="SettingsEditor" timestamp="1577036908419">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="468" y="118" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1577005075263" />
-    <state x="468" y="138" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1576960139723" />
-    <state x="468" y="118" key="SettingsEditor/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577036908419" />
-    <state x="517" y="372" key="com.intellij.ide.util.TipDialog" timestamp="1576962533802">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="517" y="372" key="com.intellij.ide.util.TipDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1576962533802" />
-    <state x="498" y="160" width="683" height="729" key="find.popup" timestamp="1576963853013">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="498" y="160" width="683" height="729" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1576963853013" />
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1577036344848">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="505" y="233" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1576963856926" />
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1577036344848" />
+    <state x="217" y="234" key="new project wizard/0.23.1680.1027/1680.23.2560.1417@0.23.1680.1027" timestamp="1601882052231" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
