@@ -1,7 +1,8 @@
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.SET;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.TrieSET;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class BoggleSolver {
     private static final int[][] directions = {
@@ -19,7 +20,6 @@ public class BoggleSolver {
     // Initializes the data structure using the given array of strings as the dictionary.
     // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
     private SET<String> validWords;
-    private List<String> allPossible;
     private int boardCols;
     private int boardCount;
     private TrieSET dictionaryTrie;
@@ -27,7 +27,6 @@ public class BoggleSolver {
     public BoggleSolver(String[] dictionary) {
         validWords = new SET<>();
         dictionaryTrie = new TrieSET();
-        allPossible = new ArrayList<>();
 
         for (String s : dictionary) {
             dictionaryTrie.add(s);
@@ -75,8 +74,6 @@ public class BoggleSolver {
             sb.append(letter);
         }
 
-        allPossible.add(sb.toString());
-
 
         if (sb.length() >= 3) {
             String s = sb.toString();
@@ -115,11 +112,6 @@ public class BoggleSolver {
                 StringBuilder sb = new StringBuilder();
                 dfs(board, row, col, visited, sb);
             }
-        }
-
-        Out o = new Out("liangOut.txt");
-        for (String s : allPossible) {
-            o.println(s);
         }
 
         return validWords;
