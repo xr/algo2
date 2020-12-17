@@ -1,7 +1,7 @@
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.SET;
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.TrieSET;
+import edu.princeton.cs.algs4.TST;
 
 
 public class BoggleSolver {
@@ -22,14 +22,14 @@ public class BoggleSolver {
     private SET<String> validWords;
     private int boardCols;
     private int boardCount;
-    private TrieSET dictionaryTrie;
+    private TST dictionaryTrie;
 
     public BoggleSolver(String[] dictionary) {
         validWords = new SET<>();
-        dictionaryTrie = new TrieSET();
+        dictionaryTrie = new TST();
 
         for (String s : dictionary) {
-            dictionaryTrie.add(s);
+            dictionaryTrie.put(s, 1);
         }
     }
 
@@ -61,8 +61,10 @@ public class BoggleSolver {
             return;
         }
 
-        if (!dictionaryTrie.keysWithPrefix(sb.toString()).iterator().hasNext()) {
-            return;
+        if (sb.length() > 0) {
+            if (!dictionaryTrie.keysWithPrefix(sb.toString()).iterator().hasNext()) {
+                return;
+            }
         }
 
         visited[row][col] = true;
