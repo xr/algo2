@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ca927b9-ab60-45e5-a72e-47a60a78db70" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../boggle/src/failed-board.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../boggle/src/BoggleSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boggle/src/BoggleSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
